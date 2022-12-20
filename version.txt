@@ -1,0 +1,71 @@
+Version Number: 5.1
+Product Line:   MOXA UPort 1100 Series 
+Platform:       Linux kernel 5.x(x86/x64)
+Company:        Moxa Inc.
+Date:           2021/09/02
+
+Support Product:
+================================
+UPort 1110/1130/1130I/1150/1150I
+USB Console
+
+Latest Tested Linux Distribution: 
+==================================
+Fedora 31 x64 (5.8.18)
+Fedora 34 x64 (5.13.12)
+OpenSUSE 15.2 (5.3.18)
+OpenSUSE 15.3 (5.3.18)
+Ubuntu 20.04 x64 (5.8.0)
+Ubuntu 20.10 x64 (5.8.0)
+Ubuntu 21.04 x64 (5.11.0)
+VM-Ubuntu 20.10 x64 (5.8.0)
+VM-Fedora 34 x64 (5.13.4)
+Raspberry Pi ARM 32-bit (5.10.17)
+
+
+Release Note:
+===============================================================================
+Ver5.1
+1. New: Support x86/x64 ARM platform.
+2. Improve: Remove unnecessary source code.
+3. Bugfix: Fix the compile error about "incompatible pointer type" for 
+           get_serial function in struct usb_serial_driver in kernel 5.13.
+Ver5.0
+1. Improve: Supports Virtual Machine, ESXi v6.7.0. Tested guest OS is listed
+            above.
+2. Change: Divided an independent driver version 5.0 to support Linux kernel
+           5.x.
+
+Ver1.4
+1. New: Add to support Moxa USB Console.
+2. Improved: Support Linux kernel up to 4.x, which include RHEL 7 and CentOS 7
+             (kernel 3.10.0). 
+3. Bugfix: Eliminated compile-time message "error: implicit declaration of
+           function 'signal_pending'" under kernel 4.11. 
+4. Bugfix: Eliminated garbled text displayed when enabled Parity bit on an
+           opened tty. 
+5. Bugfix: Fix installation problem when using multiple UPort devices at the
+           same time in kernel 3.11.
+6. Change: No support for kernel 2.x. 
+
+Ver1.3
+1. Support kernel upto 3.4.4
+2. Modify "mxu1_open" and "mxu1_close" function prototype.
+3. Modify "mxu1_ioctl", "mxu1_tiocmget" and "mxu1_tiocmset" function prototype
+4. Fix bug of DTR signal while setting baudrate to B0.
+
+Ver1.2 
+1. Add a new model UPort 1130I.
+2. Support kernel upto 2.6.29
+3. Fix bug of compiling fail on Kernel 2.6.24
+4. Fix bug of compiling fail on FC 2 2.6.5 
+5. Fix bug of installing driver with error -5 on 2.6.24.
+
+Ver1.1
+1. Add two new models UPort 1150, UPort 1150I.
+2. Add static driver installation guide to the readme.txt.
+
+Ver1.0
+1. Official released.
+
+-End-
