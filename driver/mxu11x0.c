@@ -182,8 +182,10 @@ static void mxu1_set_termios(struct usb_serial_port *port,
 static void mxu1_set_termios(struct usb_serial_port *port,
 	struct ktermios *old_termios);
 #else
-static void mxu1_set_termios(struct tty_struct *tty1,struct usb_serial_port *port, 
-	struct ktermios *old_termios);
+#if(LINUX_VERSION_CODE < KERNEL_VERSION(6,0,0))
+static void mxu1_set_termios(struct tty_struct *tty1,struct usb_serial_port *port, struct ktermios *old_termios);
+#else
+static void mxu1_set_termios(struct tty_struct *tty1,struct usb_serial_port *port, const struct ktermios *old_termios);
 #endif	
 #endif
 #if(LINUX_VERSION_CODE < KERNEL_VERSION(2,6,27))
@@ -1380,16 +1382,14 @@ static int mxu1_ioctl(struct tty_struct *tty,
 	return -ENOIOCTLCMD;
 }
 
-#if(LINUX_VERSION_CODE < KERNEL_VERSION(2,6,20))		
-static void mxu1_set_termios(struct usb_serial_port *port,
-	struct termios *old_termios)
+#if(LINUX_VERSION_CODE < KERNEL_VERSION(2,6,20))
+static void mxu1_set_termios(struct usb_serial_port *port, struct termios *old_termios)
+#elif(LINUX_VERSION_CODE < KERNEL_VERSION(2,6,27))
+static void mxu1_set_termios(struct usb_serial_port *port, struct ktermios *old_termios)
+#elif(LINUX_VERSION_CODE < KERNEL_VERSION(6,0,0))
+static void mxu1_set_termios(struct tty_struct *tty1, struct usb_serial_port *port, struct ktermios *old_termios)
 #else
-#if(LINUX_VERSION_CODE < KERNEL_VERSION(2,6,27))
-static void mxu1_set_termios(struct usb_serial_port *port,
-	struct ktermios *old_termios)
-#else
-static void mxu1_set_termios(struct tty_struct *tty1, struct usb_serial_port *port,
-	struct ktermios *old_termios)
+static void mxu1_set_termios(struct tty_struct *tty1, struct usb_serial_port *port, const struct ktermios *old_termios)
 #endif	
 #endif
 {

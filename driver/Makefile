@@ -7,8 +7,8 @@ KDIR	 := /lib/modules/$(KVER)/build
 PWD	 := $(shell pwd)
 TARGET	 := mxu11x0
 TI_3410  := ti_usb_3410_5052
-IS_CENTOS := $(shell find /etc -iname centos-release 2>/dev/NULL)
-IS_REDHATOS := $(shell find /etc -iname redhat-release 2>/dev/NULL)
+IS_CENTOS := $(shell find /etc -iname centos-release 2>/dev/zero)
+IS_REDHATOS := $(shell find /etc -iname redhat-release 2>/dev/zero)
 
 ifeq ($(KERNELRELEASE),)
 	include $(PWD)/ver.mk
